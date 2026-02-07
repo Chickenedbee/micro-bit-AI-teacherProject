@@ -1,0 +1,28 @@
+{
+    "name": "敏哥製作全套設備",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "pxt-PlanetX-AI": "github:elecfreaks/pxt-planetx-ai#v1.0.9",
+        "cutebot": "github:elecfreaks/pxt-cutebot#v6.2.4"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "8.0.18",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "pyprj"
+}
