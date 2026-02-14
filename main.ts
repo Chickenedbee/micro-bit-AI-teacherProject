@@ -1,26 +1,39 @@
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    
+input.onButtonPressed(Button.A, function () {
     mode = (mode + 1) % 5
     basic.showNumber(mode)
 })
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
-    
+input.onButtonPressed(Button.B, function () {
     if (mode > 0) {
         mode = mode - 1
     } else {
         mode = 4
     }
-    
     basic.showNumber(mode)
 })
+let car = 0
 let mode = 0
 PlanetX_AILens.initModule()
 PlanetX_AILens.switchfunc(PlanetX_AILens.FuncList.Card)
 mode = 0
 basic.showNumber(mode)
-let car = 0
-basic.forever(function on_forever() {
-    
+basic.forever(function () {
+    if (car == 0) {
+        cuteBot.stopcar()
+    } else if (car == 1) {
+        cuteBot.motors(30, 30)
+    } else if (car == 2) {
+        cuteBot.motors(-30, -30)
+    } else if (car == 3) {
+        cuteBot.motors(-30, 30)
+        basic.pause(250)
+        car = 0
+    } else if (car == 4) {
+        cuteBot.motors(30, -30)
+        basic.pause(250)
+        car = 0
+    }
+})
+basic.forever(function () {
     PlanetX_AILens.cameraImage()
     if (mode == 0) {
         if (PlanetX_AILens.trafficCard(PlanetX_AILens.trafficCards.forward)) {
@@ -64,7 +77,6 @@ basic.forever(function on_forever() {
                 . . # . .
                 `)
         }
-        
     } else if (mode == 1) {
         if (PlanetX_AILens.otherCard(PlanetX_AILens.otherCards.mouse)) {
             basic.showString("Mouse")
@@ -97,7 +109,6 @@ basic.forever(function on_forever() {
         } else if (PlanetX_AILens.otherCard(PlanetX_AILens.otherCards.cup)) {
             basic.showString("Cup")
         }
-        
     } else if (mode == 2) {
         if (PlanetX_AILens.numberCard(PlanetX_AILens.numberCards.zero)) {
             basic.showNumber(0)
@@ -120,7 +131,6 @@ basic.forever(function on_forever() {
         } else if (PlanetX_AILens.numberCard(PlanetX_AILens.numberCards.nine)) {
             basic.showNumber(9)
         }
-        
     } else if (mode == 3) {
         if (PlanetX_AILens.letterCard(PlanetX_AILens.letterCards.A)) {
             basic.showString("A")
@@ -133,7 +143,6 @@ basic.forever(function on_forever() {
         } else if (PlanetX_AILens.letterCard(PlanetX_AILens.letterCards.E)) {
             basic.showString("E")
         }
-        
     } else if (mode == 4) {
         if (PlanetX_AILens.trafficCard(PlanetX_AILens.trafficCards.forward)) {
             car = 1
@@ -181,27 +190,6 @@ basic.forever(function on_forever() {
                 . . # . .
                 `)
         }
-        
     }
-    
     basic.pause(100)
-})
-basic.forever(function on_forever2() {
-    
-    if (car == 0) {
-        cuteBot.stopcar()
-    } else if (car == 1) {
-        cuteBot.motors(30, 30)
-    } else if (car == 2) {
-        cuteBot.motors(-30, -30)
-    } else if (car == 3) {
-        cuteBot.motors(-30, 30)
-        basic.pause(250)
-        car = 0
-    } else if (car == 4) {
-        cuteBot.motors(30, -30)
-        basic.pause(250)
-        car = 0
-    }
-    
 })
